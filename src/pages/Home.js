@@ -1,4 +1,3 @@
-
 "use client"
 
 import { useState, useEffect } from "react"
@@ -12,9 +11,15 @@ import cover1 from "../assets/cover1.png"
 import cover2 from "../assets/cover2.jpeg"
 import cover3 from "../assets/cover3.jpg"
 import cover4 from "../assets/cover4.png"
+import char1 from "../assets/char1.png"
+import char2 from "../assets/char2.png"
+import char3 from "../assets/char3.png"
+import char4 from "../assets/char4.png"
+
+
 
 const CounterAnimation = ({ target }) => {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(Math.floor(target * 0.1)) // Start from 10% of the target
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
@@ -22,9 +27,9 @@ const CounterAnimation = ({ target }) => {
 
   useEffect(() => {
     if (inView) {
-      let start = 0
+      let start = Math.floor(target * 0.1)
       const duration = 2000 // 2 seconds
-      const increment = target / (duration / 16) // 60 FPS
+      const increment = (target - start) / (duration / 16) // 60 FPS
 
       const timer = setInterval(() => {
         start += increment
@@ -53,6 +58,13 @@ const Home = () => {
     }, 5000)
     return () => clearInterval(timer)
   }, [heroSlides.length])
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prevSlide) => (prevSlide + 1) % 3)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
 
   return (
     <div className="bg-white text-gray-800">
@@ -171,7 +183,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials Slider */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <motion.h2
@@ -210,12 +222,8 @@ const Home = () => {
                 ].map((testimonial, index) => (
                   <div key={index} className="w-full flex-shrink-0 px-4">
                     <div className="bg-blue-50 p-6 rounded-lg shadow-md">
-                      <p className="text-gray-700 italic text-lg">
-                        {testimonial.quote}
-                      </p>
-                      <h4 className="mt-4 font-semibold text-blue-600">
-                        - {testimonial.author}
-                      </h4>
+                      <p className="text-gray-700 italic text-lg">{testimonial.quote}</p>
+                      <h4 className="mt-4 font-semibold text-blue-600">- {testimonial.author}</h4>
                     </div>
                   </div>
                 ))}
@@ -225,9 +233,7 @@ const Home = () => {
               {[0, 1, 2].map((index) => (
                 <button
                   key={index}
-                  className={`w-3 h-3 rounded-full mx-2 ${
-                    currentSlide === index ? "bg-blue-600" : "bg-gray-300"
-                  }`}
+                  className={`w-3 h-3 rounded-full mx-2 ${currentSlide === index ? "bg-blue-600" : "bg-gray-300"}`}
                   onClick={() => setCurrentSlide(index)}
                 />
               ))}
@@ -236,67 +242,41 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section className="bg-gray-50 py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-3xl md:text-4xl font-bold text-blue-800 text-center mb-12"
-          >
-            Our Partners
-          </motion.h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[1, 2, 3, 4].map((index) => (
-              <motion.div
-                key={index}
-                initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                className="flex items-center justify-center"
-              >
-                <img
-                  src={`/assets/img${index}.jpeg`}
-                  alt={`Partner ${index}`}
-                  className="max-w-[150px] h-auto"
-                />
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="bg-blue-800 text-white py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="text-3xl md:text-4xl font-bold"
-          >
-            Join Our Mission
-          </motion.h2>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="mt-6 text-xl"
-          >
-            Be a part of the change. Empower yourself and others through Teaching
-            Pakistan.
-          </motion.p>
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="mt-8 bg-green-500 hover:bg-green-600 text-white px-8 py-3 text-lg font-semibold rounded-full transition duration-300 ease-in-out transform hover:-translate-y-1"
-          >
-            Get Started Today
-          </motion.button>
-        </div>
-      </section>
-
+     {/* Partners Section */}
+<section className="bg-gray-50 py-20 px-4">
+  <div className="max-w-6xl mx-auto">
+    <motion.h2
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className="text-3xl md:text-4xl font-bold text-blue-800 text-center mb-12"
+    >
+      Our Partners
+    </motion.h2>
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+      {[
+        { img: char1 },
+        { img: char2 },
+        { img: char3 },
+        { img: char4 }
+      ].map((partner, index) => (
+        <motion.div
+          key={index}
+          initial={{ y: 50, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, delay: index * 0.1 }}
+          className="flex items-center justify-center"
+        >
+          <img 
+            src={partner.img} 
+            alt={`Partner ${index + 1}`} 
+            className="max-w-[150px] h-auto" 
+          />
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
 
       <Footer />
     </div>
