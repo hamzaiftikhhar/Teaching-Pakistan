@@ -1,9 +1,8 @@
 
-
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, useAnimation } from "framer-motion"
+import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
@@ -14,38 +13,34 @@ import cover2 from "../assets/cover2.jpeg"
 import cover3 from "../assets/cover3.jpg"
 import cover4 from "../assets/cover4.png"
 
-const CounterAnimation = ({ target, duration = 2 }) => {
+const CounterAnimation = ({ target }) => {
   const [count, setCount] = useState(0)
-  const controls = useAnimation()
-  const [ref, inView] = useInView()
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
 
   useEffect(() => {
     if (inView) {
-      controls.start({
-        count: target,
-        transition: { duration },
-      })
+      let start = 0
+      const duration = 2000 // 2 seconds
+      const increment = target / (duration / 16) // 60 FPS
+
+      const timer = setInterval(() => {
+        start += increment
+        if (start >= target) {
+          setCount(target)
+          clearInterval(timer)
+        } else {
+          setCount(Math.floor(start))
+        }
+      }, 16)
+
+      return () => clearInterval(timer)
     }
-  }, [controls, inView, target, duration])
+  }, [inView, target])
 
-  useEffect(() => {
-    controls.start({
-      count: inView ? target : 0,
-      transition: { duration },
-    })
-  }, [controls, inView, target, duration])
-
-  useEffect(() => {
-    controls.onChange("count", (latest) => {
-      setCount(Math.floor(latest))
-    })
-  }, [controls])
-
-  return (
-    <motion.span ref={ref} animate={controls}>
-      {count}
-    </motion.span>
-  )
+  return <span ref={ref}>{count}</span>
 }
 
 const Home = () => {
@@ -113,9 +108,7 @@ const Home = () => {
       {/* Impact Counter Section */}
       <section className="py-20 bg-blue-50">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-blue-800 text-center mb-12">
-            Our Impact
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-blue-800 text-center mb-12">Our Impact</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { count: 7000, label: "Students Empowered" },
@@ -138,6 +131,7 @@ const Home = () => {
           </div>
         </div>
       </section>
+
       {/* Events Section */}
       <section className="bg-blue-50 py-20 px-4">
         <div className="max-w-6xl mx-auto">
@@ -177,7 +171,6 @@ const Home = () => {
         </div>
       </section>
 
-     
       {/* Testimonials Section */}
       <section className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
@@ -303,6 +296,7 @@ const Home = () => {
           </motion.button>
         </div>
       </section>
+
 
       <Footer />
     </div>
