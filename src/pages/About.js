@@ -1,6 +1,6 @@
 "use client"
-
 import { motion } from "framer-motion"
+import campusImage from "../assets/campus.jpg"
 
 const About = () => {
   return (
@@ -51,9 +51,9 @@ const About = () => {
               initial={{ x: 50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="relative h-[400px] rounded-lg overflow-hidden"
+              className="relative h-[400px] rounded-lg overflow-hidden shadow-lg"
             >
-              <img src="/assets/campus.jpg" alt="Campus" className="w-full h-full object-cover" />
+              <img src={campusImage || "/placeholder.svg"} alt="Our Campus" className="w-full h-full object-cover" />
             </motion.div>
           </div>
         </div>
