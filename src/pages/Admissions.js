@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
+import { useAnimateOnce } from "../components/ui/animate-once"
 
 const AdmissionStep = ({ step, title, description, isActive, onClick }) => (
   <motion.div
@@ -27,6 +28,11 @@ const AdmissionStep = ({ step, title, description, isActive, onClick }) => (
 
 const Admissions = () => {
   const [activeStep, setActiveStep] = useState(1)
+  const heroAnimation = useAnimateOnce()
+  const admissionProcessAnimation = useAnimateOnce()
+  const deadlinesAnimation = useAnimateOnce()
+  const financialAidAnimation = useAnimateOnce()
+  const ctaAnimation = useAnimateOnce()
 
   const admissionSteps = [
     {
@@ -62,17 +68,23 @@ const Admissions = () => {
       <section className="relative py-20 bg-blue-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1
+            ref={heroAnimation.ref}
             initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            animate={heroAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { duration: 0.8 } },
+            }}
             className="text-4xl md:text-5xl font-bold text-center mb-6"
           >
             Join Our Global Community
           </motion.h1>
           <motion.p
+            ref={heroAnimation.ref}
             initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            animate={heroAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
+            }}
             className="text-xl text-center max-w-3xl mx-auto"
           >
             Embark on a transformative journey in leadership and diplomacy
@@ -81,9 +93,18 @@ const Admissions = () => {
       </section>
 
       {/* Admission Process */}
-      <section className="py-20">
+      <section className="py-20" ref={admissionProcessAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-blue-800 mb-12">Admission Process</h2>
+          <motion.h2
+            initial={{ opacity: 0 }}
+            animate={admissionProcessAnimation.controls}
+            variants={{
+              visible: { opacity: 1, transition: { duration: 0.8 } },
+            }}
+            className="text-3xl font-bold text-center text-blue-800 mb-12"
+          >
+            Admission Process
+          </motion.h2>
           <div className="grid md:grid-cols-2 gap-12">
             <div>
               {admissionSteps.map((step, index) => (
@@ -167,9 +188,18 @@ const Admissions = () => {
       </section>
 
       {/* Application Deadlines */}
-      <section className="py-20 bg-blue-800 text-white">
+      <section className="py-20 bg-blue-800 text-white" ref={deadlinesAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Application Deadlines</h2>
+          <motion.h2
+            initial={{ opacity: 0 }}
+            animate={deadlinesAnimation.controls}
+            variants={{
+              visible: { opacity: 1, transition: { duration: 0.8 } },
+            }}
+            className="text-3xl font-bold text-center mb-12"
+          >
+            Application Deadlines
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { term: "Fall Semester", deadline: "March 1" },
@@ -179,8 +209,10 @@ const Admissions = () => {
               <motion.div
                 key={index}
                 initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                animate={deadlinesAnimation.controls}
+                variants={{
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: index * 0.2 } },
+                }}
                 className="bg-blue-700 p-6 rounded-lg shadow-lg text-center"
               >
                 <h3 className="text-xl font-semibold mb-2">{deadline.term}</h3>
@@ -192,14 +224,25 @@ const Admissions = () => {
       </section>
 
       {/* Financial Aid */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white" ref={financialAidAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center text-blue-800 mb-12">Financial Aid & Scholarships</h2>
+          <motion.h2
+            initial={{ opacity: 0 }}
+            animate={financialAidAnimation.controls}
+            variants={{
+              visible: { opacity: 1, transition: { duration: 0.8 } },
+            }}
+            className="text-3xl font-bold text-center text-blue-800 mb-12"
+          >
+            Financial Aid & Scholarships
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <motion.div
               initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              animate={financialAidAnimation.controls}
+              variants={{
+                visible: { x: 0, opacity: 1, transition: { duration: 0.8 } },
+              }}
               className="bg-gray-100 p-8 rounded-lg shadow-lg"
             >
               <h3 className="text-2xl font-bold text-blue-800 mb-4">Merit-Based Scholarships</h3>
@@ -215,8 +258,10 @@ const Admissions = () => {
             </motion.div>
             <motion.div
               initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              animate={financialAidAnimation.controls}
+              variants={{
+                visible: { x: 0, opacity: 1, transition: { duration: 0.8 } },
+              }}
               className="bg-gray-100 p-8 rounded-lg shadow-lg"
             >
               <h3 className="text-2xl font-bold text-blue-800 mb-4">Need-Based Financial Aid</h3>
@@ -235,20 +280,24 @@ const Admissions = () => {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-green-500 text-white">
+      <section className="py-20 bg-green-500 text-white" ref={ctaAnimation.ref}>
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            animate={ctaAnimation.controls}
+            variants={{
+              visible: { opacity: 1, transition: { duration: 0.8 } },
+            }}
             className="text-3xl md:text-4xl font-bold mb-6"
           >
             Ready to Take the Next Step?
           </motion.h2>
           <motion.p
             initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            animate={ctaAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
+            }}
             className="text-xl mb-8"
           >
             Start your application today and begin your journey towards becoming a global leader

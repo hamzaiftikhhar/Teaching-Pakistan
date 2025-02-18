@@ -1,25 +1,39 @@
 "use client"
+
 import { motion } from "framer-motion"
+import { useAnimateOnce } from "../components/ui/animate-once"
 import campusImage from "../assets/campus.jpg"
 
 const About = () => {
+  const heroAnimation = useAnimateOnce()
+  const historyAnimation = useAnimateOnce()
+  const missionVisionAnimation = useAnimateOnce()
+  const coreValuesAnimation = useAnimateOnce()
+  const ctaAnimation = useAnimateOnce()
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
       <section className="relative py-20 bg-blue-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1
+            ref={heroAnimation.ref}
             initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            animate={heroAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { duration: 0.8 } },
+            }}
             className="text-4xl md:text-5xl font-bold text-center mb-6"
           >
             Who We Are
           </motion.h1>
           <motion.p
+            ref={heroAnimation.ref}
             initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            animate={heroAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
+            }}
             className="text-xl text-center max-w-3xl mx-auto"
           >
             Shaping the future of global leadership and diplomacy through excellence in education
@@ -28,13 +42,15 @@ const About = () => {
       </section>
 
       {/* History Section */}
-      <section className="py-20">
+      <section className="py-20" ref={historyAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              animate={historyAnimation.controls}
+              variants={{
+                visible: { x: 0, opacity: 1, transition: { duration: 0.8 } },
+              }}
             >
               <h2 className="text-3xl font-bold text-blue-800 mb-6">Our History</h2>
               <p className="text-gray-600 mb-4">
@@ -49,8 +65,10 @@ const About = () => {
             </motion.div>
             <motion.div
               initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              animate={historyAnimation.controls}
+              variants={{
+                visible: { x: 0, opacity: 1, transition: { duration: 0.8, delay: 0.2 } },
+              }}
               className="relative h-[400px] rounded-lg overflow-hidden shadow-lg"
             >
               <img src={campusImage || "/placeholder.svg"} alt="Our Campus" className="w-full h-full object-cover" />
@@ -60,13 +78,15 @@ const About = () => {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50" ref={missionVisionAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
             <motion.div
               initial={{ y: 50, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              animate={missionVisionAnimation.controls}
+              variants={{
+                visible: { y: 0, opacity: 1, transition: { duration: 0.8 } },
+              }}
               className="bg-white p-8 rounded-lg shadow-lg"
             >
               <h2 className="text-2xl font-bold text-blue-800 mb-4">Our Mission</h2>
@@ -78,8 +98,10 @@ const About = () => {
             </motion.div>
             <motion.div
               initial={{ y: 50, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              animate={missionVisionAnimation.controls}
+              variants={{
+                visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: 0.2 } },
+              }}
               className="bg-white p-8 rounded-lg shadow-lg"
             >
               <h2 className="text-2xl font-bold text-blue-800 mb-4">Our Vision</h2>
@@ -94,12 +116,14 @@ const About = () => {
       </section>
 
       {/* Core Values Section */}
-      <section className="py-20">
+      <section className="py-20" ref={coreValuesAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            animate={coreValuesAnimation.controls}
+            variants={{
+              visible: { opacity: 1, transition: { duration: 0.8 } },
+            }}
             className="text-3xl font-bold text-center text-blue-800 mb-12"
           >
             Our Core Values
@@ -130,8 +154,10 @@ const About = () => {
               <motion.div
                 key={index}
                 initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                animate={coreValuesAnimation.controls}
+                variants={{
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: index * 0.2 } },
+                }}
                 className="text-center p-6 bg-white rounded-lg shadow-lg"
               >
                 <div className="text-4xl mb-4">{value.icon}</div>
@@ -144,20 +170,24 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-900 text-white">
+      <section className="py-20 bg-blue-900 text-white" ref={ctaAnimation.ref}>
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            animate={ctaAnimation.controls}
+            variants={{
+              visible: { opacity: 1, transition: { duration: 0.8 } },
+            }}
             className="text-3xl md:text-4xl font-bold mb-6"
           >
             Join Our Community
           </motion.h2>
           <motion.p
             initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            animate={ctaAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
+            }}
             className="text-xl mb-8"
           >
             Be part of a legacy of excellence in leadership and diplomacy
