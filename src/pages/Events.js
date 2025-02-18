@@ -55,15 +55,16 @@ const EventCard = ({ event, setSelectedEvent }) => (
   <motion.div
     layoutId={`event-${event.id}`}
     onClick={() => setSelectedEvent(event)}
-    className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer"
-    whileHover={{ scale: 1.05 }}
+    className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer flex flex-col h-full"
+    whileHover={{ scale: 1.03 }}
     transition={{ duration: 0.3 }}
   >
     <img src={event.image || "/placeholder.svg"} alt={event.title} className="w-full h-48 object-cover" />
-    <div className="p-4">
-      <h3 className="text-xl font-semibold text-blue-800 mb-2">{event.title}</h3>
-      <p className="text-gray-600 mb-2">{event.date}</p>
-      <p className="text-gray-700">{event.description}</p>
+    <div className="p-4 flex flex-col flex-grow">
+      <h3 className="text-lg font-semibold text-blue-800 mb-2">{event.title}</h3>
+      <p className="text-sm text-gray-600 mb-2">{event.date}</p>
+      <p className="text-sm text-gray-700 flex-grow">{event.description}</p>
+      <button className="mt-4 text-blue-600 hover:text-blue-800 text-sm font-medium">Learn More →</button>
     </div>
   </motion.div>
 )
@@ -211,8 +212,8 @@ const Events = () => {
 
       {/* Events Grid */}
       <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <AnimatePresence>
               {filteredEvents.map((event) => (
                 <EventCard key={event.id} event={event} setSelectedEvent={setSelectedEvent} />
