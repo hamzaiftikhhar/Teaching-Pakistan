@@ -1,46 +1,55 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+"use client"
+
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 
 // Import event images
-import event1 from '../assets/event1.jpg';
-import event2 from '../assets/event2.jpg';
-import event3 from '../assets/event3.jpg';
-import event4 from '../assets/event4.jpg';
+import event1 from "../assets/event1.jpg"
+import event2 from "../assets/event2.jpg"
+import event3 from "../assets/event3.jpg"
+import event4 from "../assets/event4.jpg"
 
-const events = [
+const upcomingEvents = [
   {
     id: 1,
-    title: "Global Leadership Summit",
-    date: "August 15-17, 2024",
+    title: "Annual Leadership Summit",
+    date: "September 15-17, 2024",
     image: event1,
-    description: "Join world-renowned leaders and diplomats for three days of inspiring talks, workshops, and networking opportunities.",
-    details: "The Global Leadership Summit brings together influential figures from politics, business, and academia to discuss pressing global issues and innovative solutions. Attendees will have the chance to participate in interactive sessions, panel discussions, and exclusive networking events."
+    description: "Join global leaders for our flagship event discussing cutting-edge leadership strategies.",
+    details:
+      "The Annual Leadership Summit brings together influential figures from politics, business, and academia to explore innovative approaches to leadership in a rapidly changing world. Attendees will engage in workshops, panel discussions, and networking sessions designed to enhance their leadership skills and global perspective.",
   },
   {
     id: 2,
-    title: "Diplomatic Simulation Workshop",
-    date: "September 5-6, 2024",
+    title: "International Relations Conference",
+    date: "November 5-7, 2024",
     image: event2,
-    description: "Experience real-world diplomatic scenarios in this immersive two-day workshop led by experienced diplomats.",
-    details: "This hands-on workshop puts participants in the shoes of international diplomats, tackling complex geopolitical challenges through simulated negotiations and crisis management exercises. Gain practical skills in conflict resolution, strategic communication, and cross-cultural diplomacy."
+    description: "Explore the latest developments in international diplomacy and global affairs.",
+    details:
+      "The International Relations Conference is a premier gathering of diplomats, scholars, and policymakers. This year's theme, 'Navigating Global Challenges in the 21st Century,' will address pressing issues such as climate change, cybersecurity, and economic cooperation. Participants will have the opportunity to engage in high-level discussions and contribute to shaping future international policies.",
   },
+]
+
+const pastEvents = [
   {
     id: 3,
-    title: "Tech & Diplomacy Conference",
-    date: "October 12, 2024",
+    title: "Diplomatic Simulation Workshop",
+    date: "March 10-11, 2024",
     image: event3,
-    description: "Explore the intersection of technology and international relations in this cutting-edge conference.",
-    details: "The Tech & Diplomacy Conference examines how emerging technologies are reshaping global politics and diplomacy. Featured speakers include tech industry leaders, policymakers, and academics discussing topics such as cybersecurity, digital diplomacy, and the impact of AI on international relations."
+    description: "A hands-on workshop simulating real-world diplomatic scenarios and negotiations.",
+    details:
+      "This intensive two-day workshop provided participants with practical experience in diplomatic negotiations. Through a series of simulated scenarios, attendees honed their skills in conflict resolution, strategic communication, and cross-cultural diplomacy under the guidance of experienced diplomats and negotiators.",
   },
   {
     id: 4,
-    title: "Alumni Networking Gala",
-    date: "November 30, 2024",
+    title: "Global Leadership Forum",
+    date: "May 20, 2024",
     image: event4,
-    description: "Reconnect with fellow alumni and expand your professional network at our annual gala event.",
-    details: "The Alumni Networking Gala is a prestigious evening event celebrating the achievements of our graduates and fostering connections within our global community. Enjoy fine dining, keynote speeches from distinguished alumni, and opportunities to engage with potential mentors and collaborators."
-  }
-];
+    description: "A one-day forum featuring keynote speeches from world-renowned leaders and thinkers.",
+    details:
+      "The Global Leadership Forum brought together visionary leaders from various sectors to share insights on effective leadership in a globalized world. Keynote speakers addressed topics such as ethical leadership, innovation in governance, and strategies for navigating complex global challenges. The event provided invaluable networking opportunities and inspired attendees to elevate their leadership approach.",
+  },
+]
 
 const EventCard = ({ event, setSelectedEvent }) => (
   <motion.div
@@ -57,7 +66,7 @@ const EventCard = ({ event, setSelectedEvent }) => (
       <p className="text-gray-700">{event.description}</p>
     </div>
   </motion.div>
-);
+)
 
 const EventModal = ({ event, setSelectedEvent }) => (
   <motion.div
@@ -65,11 +74,12 @@ const EventModal = ({ event, setSelectedEvent }) => (
     className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
     onClick={() => setSelectedEvent(null)}
   >
-    <motion.div
-      className="bg-white rounded-lg shadow-xl max-w-2xl w-full m-4"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <img src={event.image || "/placeholder.svg"} alt={event.title} className="w-full h-64 object-cover rounded-t-lg" />
+    <motion.div className="bg-white rounded-lg shadow-xl max-w-2xl w-full m-4" onClick={(e) => e.stopPropagation()}>
+      <img
+        src={event.image || "/placeholder.svg"}
+        alt={event.title}
+        className="w-full h-64 object-cover rounded-t-lg"
+      />
       <div className="p-6">
         <h2 className="text-3xl font-bold text-blue-800 mb-4">{event.title}</h2>
         <p className="text-xl text-gray-600 mb-4">{event.date}</p>
@@ -77,31 +87,26 @@ const EventModal = ({ event, setSelectedEvent }) => (
         <div className="flex justify-between items-center">
           <button
             className="bg-blue-800 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
-            onClick={() => {/* Registration logic */}}
+            onClick={() => {
+              /* Registration logic */
+            }}
           >
-            Register Now
+            {new Date(event.date.split("-")[0]) > new Date() ? "Register Now" : "View Details"}
           </button>
-          <button
-            className="text-gray-600 hover:text-gray-800"
-            onClick={() => setSelectedEvent(null)}
-          >
+          <button className="text-gray-600 hover:text-gray-800" onClick={() => setSelectedEvent(null)}>
             Close
           </button>
         </div>
       </div>
     </motion.div>
   </motion.div>
-);
+)
 
 const Events = () => {
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const [filter, setFilter] = useState('all');
+  const [selectedEvent, setSelectedEvent] = useState(null)
+  const [filter, setFilter] = useState("upcoming")
 
-  const filteredEvents = filter === 'all' ? events : events.filter(event => {
-    const eventDate = new Date(event.date.split('-')[0]);
-    const currentDate = new Date();
-    return filter === 'upcoming' ? eventDate > currentDate : eventDate <= currentDate;
-  });
+  const filteredEvents = filter === "upcoming" ? upcomingEvents : pastEvents
 
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -113,11 +118,9 @@ const Events = () => {
           transition={{ duration: 1 }}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">
-            Events & Conferences
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Stay Updated with the Latest</h1>
           <p className="text-xl text-center max-w-3xl mx-auto">
-            Engage with global leaders, expand your network, and stay at the forefront of leadership and diplomacy
+            Discover our upcoming events and latest achievements in leadership and diplomacy
           </p>
         </motion.div>
         <motion.div
@@ -142,12 +145,44 @@ const Events = () => {
               }}
               transition={{
                 duration: Math.random() * 10 + 10,
-                repeat: Infinity,
+                repeat: Number.POSITIVE_INFINITY,
                 repeatType: "reverse",
               }}
             />
           ))}
         </motion.div>
+      </section>
+
+      {/* News and Achievements Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-3xl font-bold text-blue-800 mb-8 text-center"
+          >
+            News and Achievements
+          </motion.h2>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="bg-blue-50 p-6 rounded-lg shadow-lg"
+          >
+            <h3 className="text-xl font-semibold text-blue-800 mb-4">
+              Faculty Publishes Groundbreaking Research in International Diplomacy
+            </h3>
+            <p className="text-gray-700">
+              Our esteemed faculty member, Dr. Sarah Johnson, has published a groundbreaking paper on innovative
+              approaches to conflict resolution in the digital age. This research is expected to significantly impact
+              the field of international diplomacy and has been featured in several prestigious academic journals.
+            </p>
+            <a href="#" className="inline-block mt-4 text-blue-600 hover:underline">
+              Read more
+            </a>
+          </motion.div>
+        </div>
       </section>
 
       {/* Event Filter */}
@@ -157,24 +192,16 @@ const Events = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full ${filter === 'all' ? 'bg-blue-800 text-white' : 'bg-white text-blue-800'}`}
-              onClick={() => setFilter('all')}
-            >
-              All Events
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full ${filter === 'upcoming' ? 'bg-blue-800 text-white' : 'bg-white text-blue-800'}`}
-              onClick={() => setFilter('upcoming')}
+              className={`px-6 py-2 rounded-full ${filter === "upcoming" ? "bg-blue-800 text-white" : "bg-white text-blue-800"}`}
+              onClick={() => setFilter("upcoming")}
             >
               Upcoming Events
             </motion.button>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full ${filter === 'past' ? 'bg-blue-800 text-white' : 'bg-white text-blue-800'}`}
-              onClick={() => setFilter('past')}
+              className={`px-6 py-2 rounded-full ${filter === "past" ? "bg-blue-800 text-white" : "bg-white text-blue-800"}`}
+              onClick={() => setFilter("past")}
             >
               Past Events
             </motion.button>
@@ -185,10 +212,7 @@ const Events = () => {
       {/* Events Grid */}
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            layout
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <AnimatePresence>
               {filteredEvents.map((event) => (
                 <EventCard key={event.id} event={event} setSelectedEvent={setSelectedEvent} />
@@ -200,9 +224,7 @@ const Events = () => {
 
       {/* Event Modal */}
       <AnimatePresence>
-        {selectedEvent && (
-          <EventModal event={selectedEvent} setSelectedEvent={setSelectedEvent} />
-        )}
+        {selectedEvent && <EventModal event={selectedEvent} setSelectedEvent={setSelectedEvent} />}
       </AnimatePresence>
 
       {/* Newsletter Signup */}
@@ -214,7 +236,7 @@ const Events = () => {
             transition={{ duration: 0.8 }}
             className="text-3xl md:text-4xl font-bold mb-6"
           >
-            Stay Updated on Future Events
+            Stay Informed
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -222,7 +244,7 @@ const Events = () => {
             transition={{ delay: 0.2, duration: 0.8 }}
             className="text-xl mb-8"
           >
-            Subscribe to our newsletter for exclusive event announcements and early-bird registrations
+            Subscribe to our newsletter for exclusive event announcements and the latest news
           </motion.p>
           <motion.form
             initial={{ opacity: 0, y: 20 }}
@@ -246,7 +268,8 @@ const Events = () => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Events;
+export default Events
+
