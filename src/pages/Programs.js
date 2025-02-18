@@ -2,25 +2,37 @@
 
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
+import { useAnimateOnce } from "../components/ui/animate-once"
 
 const Programs = () => {
+  const heroAnimation = useAnimateOnce()
+  const mainProgramsAnimation = useAnimateOnce()
+  const workshopsAnimation = useAnimateOnce()
+  const ctaAnimation = useAnimateOnce()
+
   return (
     <div className="bg-white">
       {/* Hero Section */}
       <section className="relative py-20 bg-blue-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1
+            ref={heroAnimation.ref}
             initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            animate={heroAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { duration: 0.8 } },
+            }}
             className="text-4xl md:text-5xl font-bold text-center mb-6"
           >
             Transformative Programs for Future Leaders
           </motion.h1>
           <motion.p
+            ref={heroAnimation.ref}
             initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            animate={heroAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
+            }}
             className="text-xl text-center max-w-3xl mx-auto"
           >
             Comprehensive education programs designed to develop the next generation of global leaders
@@ -29,14 +41,16 @@ const Programs = () => {
       </section>
 
       {/* Main Programs Section */}
-      <section className="py-20">
+      <section className="py-20" ref={mainProgramsAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Leadership Development */}
             <motion.div
               initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              animate={mainProgramsAnimation.controls}
+              variants={{
+                visible: { x: 0, opacity: 1, transition: { duration: 0.8 } },
+              }}
               className="bg-white p-8 rounded-lg shadow-lg"
             >
               <h2 className="text-2xl font-bold text-blue-800 mb-4">Leadership Development</h2>
@@ -73,8 +87,10 @@ const Programs = () => {
             {/* Diplomacy and International Relations */}
             <motion.div
               initial={{ x: 50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
+              animate={mainProgramsAnimation.controls}
+              variants={{
+                visible: { x: 0, opacity: 1, transition: { duration: 0.8, delay: 0.2 } },
+              }}
               className="bg-white p-8 rounded-lg shadow-lg"
             >
               <h2 className="text-2xl font-bold text-blue-800 mb-4">Diplomacy & International Relations</h2>
@@ -111,12 +127,14 @@ const Programs = () => {
       </section>
 
       {/* Workshops Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50" ref={workshopsAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            animate={workshopsAnimation.controls}
+            variants={{
+              visible: { opacity: 1, transition: { duration: 0.8 } },
+            }}
             className="text-3xl font-bold text-center text-blue-800 mb-12"
           >
             Specialized Workshops
@@ -145,8 +163,10 @@ const Programs = () => {
               <motion.div
                 key={index}
                 initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                animate={workshopsAnimation.controls}
+                variants={{
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: index * 0.2 } },
+                }}
                 className="bg-white p-6 rounded-lg shadow-lg"
               >
                 <div className="text-4xl mb-4">{workshop.icon}</div>
@@ -160,20 +180,24 @@ const Programs = () => {
       </section>
 
       {/* Application CTA */}
-      <section className="py-20 bg-blue-900 text-white">
+      <section className="py-20 bg-blue-900 text-white" ref={ctaAnimation.ref}>
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            animate={ctaAnimation.controls}
+            variants={{
+              visible: { opacity: 1, transition: { duration: 0.8 } },
+            }}
             className="text-3xl md:text-4xl font-bold mb-6"
           >
             Ready to Start Your Journey?
           </motion.h2>
           <motion.p
             initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            animate={ctaAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
+            }}
             className="text-xl mb-8"
           >
             Applications are now open for our upcoming programs

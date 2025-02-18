@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useAnimateOnce } from "../components/ui/animate-once"
 
 // Import faculty images
 import faculty1 from "../assets/char1.jpg"
@@ -74,6 +75,10 @@ const FacultyCard = ({ member, isSelected, onClick }) => (
 
 const Faculty = () => {
   const [selectedMember, setSelectedMember] = useState(null)
+  const heroAnimation = useAnimateOnce()
+  const facultyGridAnimation = useAnimateOnce()
+  const researchHighlightsAnimation = useAnimateOnce()
+  const ctaAnimation = useAnimateOnce()
 
   return (
     <div className="bg-gray-100 min-h-screen">
@@ -81,17 +86,23 @@ const Faculty = () => {
       <section className="relative py-20 bg-blue-900 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1
+            ref={heroAnimation.ref}
             initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            animate={heroAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { duration: 0.8 } },
+            }}
             className="text-4xl md:text-5xl font-bold text-center mb-6"
           >
             Our Distinguished Faculty
           </motion.h1>
           <motion.p
+            ref={heroAnimation.ref}
             initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            animate={heroAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
+            }}
             className="text-xl text-center max-w-3xl mx-auto"
           >
             Learn from world-renowned experts in leadership and diplomacy
@@ -100,25 +111,42 @@ const Faculty = () => {
       </section>
 
       {/* Faculty Grid */}
-      <section className="py-20">
+      <section className="py-20" ref={facultyGridAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div layout className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {facultyMembers.map((member, index) => (
-              <FacultyCard
+              <motion.div
                 key={member.name}
-                member={member}
-                isSelected={selectedMember === index}
-                onClick={() => setSelectedMember(selectedMember === index ? null : index)}
-              />
+                initial={{ opacity: 0, y: 50 }}
+                animate={facultyGridAnimation.controls}
+                variants={{
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: index * 0.1 } },
+                }}
+              >
+                <FacultyCard
+                  member={member}
+                  isSelected={selectedMember === index}
+                  onClick={() => setSelectedMember(selectedMember === index ? null : index)}
+                />
+              </motion.div>
             ))}
           </motion.div>
         </div>
       </section>
 
       {/* Research Highlights */}
-      <section className="py-20 bg-blue-800 text-white">
+      <section className="py-20 bg-blue-800 text-white" ref={researchHighlightsAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-12">Research Highlights</h2>
+          <motion.h2
+            initial={{ opacity: 0 }}
+            animate={researchHighlightsAnimation.controls}
+            variants={{
+              visible: { opacity: 1, transition: { duration: 0.8 } },
+            }}
+            className="text-3xl font-bold text-center mb-12"
+          >
+            Research Highlights
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
@@ -140,8 +168,10 @@ const Faculty = () => {
               <motion.div
                 key={index}
                 initial={{ y: 50, opacity: 0 }}
-                whileInView={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: index * 0.2 }}
+                animate={researchHighlightsAnimation.controls}
+                variants={{
+                  visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: index * 0.2 } },
+                }}
                 className="bg-blue-700 p-6 rounded-lg shadow-lg"
               >
                 <div className="text-4xl mb-4">{research.icon}</div>
@@ -154,20 +184,24 @@ const Faculty = () => {
       </section>
 
       {/* Join Our Team CTA */}
-      <section className="py-20 bg-green-500 text-white">
+      <section className="py-20 bg-green-500 text-white" ref={ctaAnimation.ref}>
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
+            animate={ctaAnimation.controls}
+            variants={{
+              visible: { opacity: 1, transition: { duration: 0.8 } },
+            }}
             className="text-3xl md:text-4xl font-bold mb-6"
           >
             Join Our Distinguished Faculty
           </motion.h2>
           <motion.p
             initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            animate={ctaAnimation.controls}
+            variants={{
+              visible: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
+            }}
             className="text-xl mb-8"
           >
             We're always looking for passionate educators and researchers to join our team
