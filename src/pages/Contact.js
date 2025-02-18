@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useAnimateOnce } from "../components/ui/animate-once"
 
 const ContactForm = () => {
   const [formStatus, setFormStatus] = useState(null)
@@ -97,14 +98,23 @@ const ContactForm = () => {
 }
 
 const Contact = () => {
+  const heroAnimation = useAnimateOnce()
+  const contactInfoAnimation = useAnimateOnce()
+  const contactFormAnimation = useAnimateOnce()
+  const faqAnimation = useAnimateOnce()
+  const mapAnimation = useAnimateOnce()
+
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 bg-blue-900 text-white overflow-hidden">
         <motion.div
+          ref={heroAnimation.ref}
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
+          animate={heroAnimation.controls}
+          variants={{
+            visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
+          }}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Get in Touch</h1>
@@ -143,13 +153,15 @@ const Contact = () => {
       </section>
 
       {/* Contact Information */}
-      <section className="py-20">
+      <section className="py-20" ref={contactInfoAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              animate={contactInfoAnimation.controls}
+              variants={{
+                visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+              }}
             >
               <h2 className="text-3xl font-bold text-blue-800 mb-6">Contact Information</h2>
               <div className="space-y-4">
@@ -238,9 +250,12 @@ const Contact = () => {
               </div>
             </motion.div>
             <motion.div
+              ref={contactFormAnimation.ref}
               initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              animate={contactFormAnimation.controls}
+              variants={{
+                visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
+              }}
               className="bg-white p-8 rounded-lg shadow-lg"
             >
               <h2 className="text-3xl font-bold text-blue-800 mb-6">Send Us a Message</h2>
@@ -251,12 +266,14 @@ const Contact = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50" ref={faqAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            animate={faqAnimation.controls}
+            variants={{
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+            }}
             className="text-3xl font-bold text-center text-blue-800 mb-12"
           >
             Frequently Asked Questions
@@ -287,8 +304,10 @@ const Contact = () => {
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
+                animate={faqAnimation.controls}
+                variants={{
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: index * 0.1 } },
+                }}
                 className="bg-white p-6 rounded-lg shadow-md"
               >
                 <h3 className="text-xl font-semibold text-blue-800 mb-2">{faq.question}</h3>
@@ -300,12 +319,14 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="py-20">
+      <section className="py-20" ref={mapAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            animate={mapAnimation.controls}
+            variants={{
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+            }}
             className="text-3xl font-bold text-center text-blue-800 mb-12"
           >
             Visit Our Campus

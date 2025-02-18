@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { useAnimateOnce } from "../components/ui/animate-once"
 
 // Import event images
 import event1 from "../assets/event1.jpg"
@@ -109,14 +110,22 @@ const Events = () => {
 
   const filteredEvents = filter === "upcoming" ? upcomingEvents : pastEvents
 
+  const heroAnimation = useAnimateOnce()
+  const newsAnimation = useAnimateOnce()
+  const eventsAnimation = useAnimateOnce()
+  const newsletterAnimation = useAnimateOnce()
+
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Hero Section */}
       <section className="relative py-20 bg-blue-900 text-white overflow-hidden">
         <motion.div
+          ref={heroAnimation.ref}
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
+          animate={heroAnimation.controls}
+          variants={{
+            visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
+          }}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         >
           <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Stay Updated with the Latest</h1>
@@ -155,20 +164,24 @@ const Events = () => {
       </section>
 
       {/* News and Achievements Section */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-white" ref={newsAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            animate={newsAnimation.controls}
+            variants={{
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+            }}
             className="text-3xl font-bold text-blue-800 mb-8 text-center"
           >
             News and Achievements
           </motion.h2>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            animate={newsAnimation.controls}
+            variants={{
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.2 } },
+            }}
             className="bg-blue-50 p-6 rounded-lg shadow-lg"
           >
             <h3 className="text-xl font-semibold text-blue-800 mb-4">
@@ -211,9 +224,17 @@ const Events = () => {
       </section>
 
       {/* Events Grid */}
-      <section className="py-12">
+      <section className="py-12" ref={eventsAnimation.ref}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div
+            layout
+            initial={{ opacity: 0, y: 20 }}
+            animate={eventsAnimation.controls}
+            variants={{
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             <AnimatePresence>
               {filteredEvents.map((event) => (
                 <EventCard key={event.id} event={event} setSelectedEvent={setSelectedEvent} />
@@ -229,28 +250,34 @@ const Events = () => {
       </AnimatePresence>
 
       {/* Newsletter Signup */}
-      <section className="py-20 bg-blue-800 text-white">
+      <section className="py-20 bg-blue-800 text-white" ref={newsletterAnimation.ref}>
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            animate={newsletterAnimation.controls}
+            variants={{
+              visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+            }}
             className="text-3xl md:text-4xl font-bold mb-6"
           >
             Stay Informed
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
+            animate={newsletterAnimation.controls}
+            variants={{
+              visible: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.8 } },
+            }}
             className="text-xl mb-8"
           >
             Subscribe to our newsletter for exclusive event announcements and the latest news
           </motion.p>
           <motion.form
             initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            animate={newsletterAnimation.controls}
+            variants={{
+              visible: { opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.8 } },
+            }}
             className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4"
           >
             <input
