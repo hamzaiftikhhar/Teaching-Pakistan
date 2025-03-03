@@ -83,7 +83,7 @@ const Faculty = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-blue-900 text-white">
+      <section className="relative py-20 bg-[#1666ba] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1
             ref={heroAnimation.ref}
