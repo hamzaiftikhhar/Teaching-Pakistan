@@ -213,7 +213,7 @@ const Admissions = () => {
                 variants={{
                   visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: index * 0.2 } },
                 }}
-                className="bg-blue-700 p-6 rounded-lg shadow-lg text-center"
+                className="bg-[#166ba] p-6 rounded-lg shadow-lg text-center"
               >
                 <h3 className="text-xl font-semibold mb-2">{deadline.term}</h3>
                 <p className="text-3xl font-bold">{deadline.deadline}</p>
