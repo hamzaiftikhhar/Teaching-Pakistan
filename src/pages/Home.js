@@ -77,7 +77,7 @@ const Home = () => {
             />
           </motion.div>
         ))}
-        <div className="absolute inset-0 bg-blue-900 bg-opacity-60"></div>
+        <div className="absolute inset-0 bg-[#1666ba] bg-opacity-60"></div>
         <div className="relative z-10 h-full flex items-center justify-center text-white text-center">
           <div className="max-w-4xl mx-auto px-4">
             <motion.h1
@@ -183,7 +183,7 @@ const Home = () => {
       </section>
 
       {/* Impact Counter Section */}
-      <section className="py-20 bg-blue-800 text-white" ref={impactAnimation.ref}>
+      <section className="py-20 bg-[#1666ba] text-white" ref={impactAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0 }}
@@ -264,7 +264,7 @@ const Home = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-900 text-white" ref={ctaAnimation.ref}>
+      <section className="py-20 bg-[#1666ba] text-white" ref={ctaAnimation.ref}>
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0 }}

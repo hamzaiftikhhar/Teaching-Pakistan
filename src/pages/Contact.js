@@ -76,7 +76,7 @@ const ContactForm = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           type="submit"
-          className="w-full bg-blue-800 text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors duration-200"
+          className="w-full bg-[#1666ba] text-white px-6 py-3 rounded-md hover:bg-blue-700 transition-colors duration-200"
         >
           Send Message
         </motion.button>
@@ -107,7 +107,7 @@ const Contact = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-blue-900 text-white overflow-hidden">
+      <section className="relative pt-32 pb-20 bg-[#1666ba] text-white overflow-hidden">
         <motion.div
           ref={heroAnimation.ref}
           initial={{ opacity: 0, scale: 0.8 }}

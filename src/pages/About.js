@@ -14,7 +14,7 @@ const About = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 bg-blue-900 text-white">
+      <section className="relative py-20 bg-[#1666ba] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1
             ref={heroAnimation.ref}
@@ -170,7 +170,7 @@ const About = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-blue-900 text-white" ref={ctaAnimation.ref}>
+      <section className="py-20 bg-[#1666ba] text-white" ref={ctaAnimation.ref}>
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0 }}

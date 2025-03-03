@@ -135,7 +135,7 @@ const Faculty = () => {
       </section>
 
       {/* Research Highlights */}
-      <section className="py-20 bg-blue-800 text-white" ref={researchHighlightsAnimation.ref}>
+      <section className="py-20 bg-[#1666ba] text-white" ref={researchHighlightsAnimation.ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0 }}

@@ -13,7 +13,7 @@ const Programs = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <section className="relative py-20 bg-blue-900 text-white">
+      <section className="relative py-20 bg-[#1666ba] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1
             ref={heroAnimation.ref}
@@ -78,7 +78,7 @@ const Programs = () => {
               </ul>
               <Link
                 to="/contact"
-                className="inline-block bg-blue-800 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
+                className="inline-block bg-[#1666ba] text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
               >
                 Learn More
               </Link>
@@ -117,7 +117,7 @@ const Programs = () => {
               </ul>
               <Link
                 to="/contact"
-                className="inline-block bg-blue-800 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
+                className="inline-block bg-[#1666ba] text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
               >
                 Learn More
               </Link>
@@ -180,7 +180,7 @@ const Programs = () => {
       </section>
 
       {/* Application CTA */}
-      <section className="py-20 bg-blue-900 text-white" ref={ctaAnimation.ref}>
+      <section className="py-20 bg-[#1666ba] text-white" ref={ctaAnimation.ref}>
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0 }}

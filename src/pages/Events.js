@@ -88,7 +88,7 @@ const EventModal = ({ event, setSelectedEvent }) => (
         <p className="text-gray-700 mb-6">{event.details}</p>
         <div className="flex justify-between items-center">
           <button
-            className="bg-blue-800 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
+            className="bg-[#1666ba] text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
             onClick={() => {
               /* Registration logic */
             }}
@@ -118,7 +118,7 @@ const Events = () => {
   return (
     <div className="bg-gray-100 min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-20 bg-blue-900 text-white overflow-hidden">
+      <section className="relative py-20 bg-[#1666ba] text-white overflow-hidden">
         <motion.div
           ref={heroAnimation.ref}
           initial={{ opacity: 0, scale: 0.8 }}
@@ -206,7 +206,7 @@ const Events = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full ${filter === "upcoming" ? "bg-blue-800 text-white" : "bg-white text-blue-800"}`}
+              className={`px-6 py-2 rounded-full ${filter === "upcoming" ? "bg-[#1666ba] text-white" : "bg-white text-blue-800"}`}
               onClick={() => setFilter("upcoming")}
             >
               Upcoming Events
@@ -214,7 +214,7 @@ const Events = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full ${filter === "past" ? "bg-blue-800 text-white" : "bg-white text-blue-800"}`}
+              className={`px-6 py-2 rounded-full ${filter === "past" ? "bg-[#1666ba] text-white" : "bg-white text-blue-800"}`}
               onClick={() => setFilter("past")}
             >
               Past Events
@@ -250,7 +250,7 @@ const Events = () => {
       </AnimatePresence>
 
       {/* Newsletter Signup */}
-      <section className="py-20 bg-blue-800 text-white" ref={newsletterAnimation.ref}>
+      <section className="py-20 bg-[#1666ba] text-white" ref={newsletterAnimation.ref}>
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
