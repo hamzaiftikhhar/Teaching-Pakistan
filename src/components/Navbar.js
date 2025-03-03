@@ -35,7 +35,7 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <button className="bg-[#1666ba] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors duration-200">
+            <button className="bg-[#1666ba] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#1254a1] transition-colors duration-200">
               Apply Now
             </button>
           </div>
@@ -83,7 +83,7 @@ const Navbar = () => {
               {item.name}
             </Link>
           ))}
-          <button className="w-full bg-[#1666ba] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-blue-700 transition-colors duration-200">
+          <button className="w-full bg-[#1666ba] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#1254a1] transition-colors duration-200">
             Apply Now
           </button>
         </div>

@@ -113,7 +113,7 @@ const Home = () => {
             >
               <Link
                 to="/programs"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-colors duration-200"
+                className="bg-blue-600 hover:bg-[#1254a1] text-white px-8 py-3 rounded-full text-lg font-semibold transition-colors duration-200"
               >
                 Explore Programs
               </Link>

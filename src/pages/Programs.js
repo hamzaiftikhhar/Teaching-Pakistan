@@ -78,7 +78,7 @@ const Programs = () => {
               </ul>
               <Link
                 to="/contact"
-                className="inline-block bg-[#1666ba] text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
+                className="inline-block bg-[#1666ba] text-white px-6 py-2 rounded-full hover:bg-[#1254a1] transition-colors duration-200"
               >
                 Learn More
               </Link>
@@ -117,7 +117,7 @@ const Programs = () => {
               </ul>
               <Link
                 to="/contact"
-                className="inline-block bg-[#1666ba] text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
+                className="inline-block bg-[#1666ba] text-white px-6 py-2 rounded-full hover:bg-[#1254a1] transition-colors duration-200"
               >
                 Learn More
               </Link>

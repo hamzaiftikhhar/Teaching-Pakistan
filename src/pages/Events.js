@@ -88,7 +88,7 @@ const EventModal = ({ event, setSelectedEvent }) => (
         <p className="text-gray-700 mb-6">{event.details}</p>
         <div className="flex justify-between items-center">
           <button
-            className="bg-[#1666ba] text-white px-6 py-2 rounded-full hover:bg-blue-700 transition-colors duration-200"
+            className="bg-[#1666ba] text-white px-6 py-2 rounded-full hover:bg-[#1254a1] transition-colors duration-200"
             onClick={() => {
               /* Registration logic */
             }}
