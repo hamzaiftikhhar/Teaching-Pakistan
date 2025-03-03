@@ -65,7 +65,7 @@ const FacultyCard = ({ member, isSelected, onClick }) => (
           transition={{ duration: 0.3 }}
           className="p-4"
         >
-          <p className="text-blue-800 font-semibold mb-2">Expertise: {member.expertise}</p>
+          <p className="text-[#1666ba] font-semibold mb-2">Expertise: {member.expertise}</p>
           <p className="text-gray-600">{member.bio}</p>
         </motion.div>
       )}
@@ -172,7 +172,7 @@ const Faculty = () => {
                 variants={{
                   visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: index * 0.2 } },
                 }}
-                className="bg-blue-700 p-6 rounded-lg shadow-lg"
+                className="bg-[#1666ba] p-6 rounded-lg shadow-lg"
               >
                 <div className="text-4xl mb-4">{research.icon}</div>
                 <h3 className="text-xl font-semibold mb-2">{research.title}</h3>

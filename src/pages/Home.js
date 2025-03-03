@@ -137,7 +137,7 @@ const Home = () => {
             variants={{
               visible: { opacity: 1, transition: { duration: 0.8 } },
             }}
-            className="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12"
+            className="text-3xl md:text-4xl font-bold text-center text-[#1666ba] mb-12"
           >
             Key Highlights
           </motion.h2>
@@ -174,7 +174,7 @@ const Home = () => {
                 className="bg-white p-6 rounded-lg shadow-lg text-center"
               >
                 <div className="text-4xl mb-4">{highlight.icon}</div>
-                <h3 className="text-xl font-semibold text-blue-800 mb-2">{highlight.title}</h3>
+                <h3 className="text-xl font-semibold text-[#1666ba] mb-2">{highlight.title}</h3>
                 <p className="text-gray-600">{highlight.description}</p>
               </motion.div>
             ))}
@@ -230,7 +230,7 @@ const Home = () => {
             variants={{
               visible: { opacity: 1, transition: { duration: 0.8 } },
             }}
-            className="text-3xl md:text-4xl font-bold text-center text-blue-800 mb-12"
+            className="text-3xl md:text-4xl font-bold text-center text-[#1666ba] mb-12"
           >
             Meet Our Experts
           </motion.h2>
@@ -255,7 +255,7 @@ const Home = () => {
                   alt={faculty.name}
                   className="w-48 h-48 rounded-full mx-auto mb-4 object-cover"
                 />
-                <h3 className="text-xl font-semibold text-blue-800">{faculty.name}</h3>
+                <h3 className="text-xl font-semibold text-[#1666ba]">{faculty.name}</h3>
                 <p className="text-gray-600">{faculty.role}</p>
               </motion.div>
             ))}

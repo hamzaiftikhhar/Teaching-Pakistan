@@ -53,7 +53,7 @@ const Programs = () => {
               }}
               className="bg-white p-8 rounded-lg shadow-lg"
             >
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">Leadership Development</h2>
+              <h2 className="text-2xl font-bold text-[#1666ba] mb-4">Leadership Development</h2>
               <p className="text-gray-600 mb-6">
                 Our flagship program focuses on developing strategic thinking, ethical leadership, and decision-making
                 skills essential for global leaders.
@@ -93,7 +93,7 @@ const Programs = () => {
               }}
               className="bg-white p-8 rounded-lg shadow-lg"
             >
-              <h2 className="text-2xl font-bold text-blue-800 mb-4">Diplomacy & International Relations</h2>
+              <h2 className="text-2xl font-bold text-[#1666ba] mb-4">Diplomacy & International Relations</h2>
               <p className="text-gray-600 mb-6">
                 Comprehensive training in global politics, negotiation, and conflict resolution for aspiring diplomats.
               </p>
@@ -135,7 +135,7 @@ const Programs = () => {
             variants={{
               visible: { opacity: 1, transition: { duration: 0.8 } },
             }}
-            className="text-3xl font-bold text-center text-blue-800 mb-12"
+            className="text-3xl font-bold text-center text-[#1666ba] mb-12"
           >
             Specialized Workshops
           </motion.h2>
@@ -170,7 +170,7 @@ const Programs = () => {
                 className="bg-white p-6 rounded-lg shadow-lg"
               >
                 <div className="text-4xl mb-4">{workshop.icon}</div>
-                <h3 className="text-xl font-semibold text-blue-800 mb-2">{workshop.title}</h3>
+                <h3 className="text-xl font-semibold text-[#1666ba] mb-2">{workshop.title}</h3>
                 <p className="text-gray-600 mb-4">{workshop.description}</p>
                 <p className="text-sm text-gray-500">Duration: {workshop.duration}</p>
               </motion.div>

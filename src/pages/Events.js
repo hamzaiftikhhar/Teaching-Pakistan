@@ -62,10 +62,10 @@ const EventCard = ({ event, setSelectedEvent }) => (
   >
     <img src={event.image || "/placeholder.svg"} alt={event.title} className="w-full h-48 object-cover" />
     <div className="p-4 flex flex-col flex-grow">
-      <h3 className="text-lg font-semibold text-blue-800 mb-2">{event.title}</h3>
+      <h3 className="text-lg font-semibold text-[#1666ba] mb-2">{event.title}</h3>
       <p className="text-sm text-gray-600 mb-2">{event.date}</p>
       <p className="text-sm text-gray-700 flex-grow">{event.description}</p>
-      <button className="mt-4 text-blue-600 hover:text-blue-800 text-sm font-medium">Learn More →</button>
+      <button className="mt-4 text-blue-600 hover:text-[#1666ba] text-sm font-medium">Learn More →</button>
     </div>
   </motion.div>
 )
@@ -83,7 +83,7 @@ const EventModal = ({ event, setSelectedEvent }) => (
         className="w-full h-64 object-cover rounded-t-lg"
       />
       <div className="p-6">
-        <h2 className="text-3xl font-bold text-blue-800 mb-4">{event.title}</h2>
+        <h2 className="text-3xl font-bold text-[#1666ba] mb-4">{event.title}</h2>
         <p className="text-xl text-gray-600 mb-4">{event.date}</p>
         <p className="text-gray-700 mb-6">{event.details}</p>
         <div className="flex justify-between items-center">
@@ -172,7 +172,7 @@ const Events = () => {
             variants={{
               visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
             }}
-            className="text-3xl font-bold text-blue-800 mb-8 text-center"
+            className="text-3xl font-bold text-[#1666ba] mb-8 text-center"
           >
             News and Achievements
           </motion.h2>
@@ -184,7 +184,7 @@ const Events = () => {
             }}
             className="bg-blue-50 p-6 rounded-lg shadow-lg"
           >
-            <h3 className="text-xl font-semibold text-blue-800 mb-4">
+            <h3 className="text-xl font-semibold text-[#1666ba] mb-4">
               Faculty Publishes Groundbreaking Research in International Diplomacy
             </h3>
             <p className="text-gray-700">
@@ -206,7 +206,7 @@ const Events = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full ${filter === "upcoming" ? "bg-[#1666ba] text-white" : "bg-white text-blue-800"}`}
+              className={`px-6 py-2 rounded-full ${filter === "upcoming" ? "bg-[#1666ba] text-white" : "bg-white text-[#1666ba]"}`}
               onClick={() => setFilter("upcoming")}
             >
               Upcoming Events
@@ -214,7 +214,7 @@ const Events = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`px-6 py-2 rounded-full ${filter === "past" ? "bg-[#1666ba] text-white" : "bg-white text-blue-800"}`}
+              className={`px-6 py-2 rounded-full ${filter === "past" ? "bg-[#1666ba] text-white" : "bg-white text-[#1666ba]"}`}
               onClick={() => setFilter("past")}
             >
               Past Events

@@ -163,11 +163,11 @@ const Contact = () => {
                 visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
               }}
             >
-              <h2 className="text-3xl font-bold text-blue-800 mb-6">Contact Information</h2>
+              <h2 className="text-3xl font-bold text-[#1666ba] mb-6">Contact Information</h2>
               <div className="space-y-4">
                 <p className="flex items-center">
                   <svg
-                    className="w-6 h-6 mr-2 text-blue-800"
+                    className="w-6 h-6 mr-2 text-[#1666ba]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -190,7 +190,7 @@ const Contact = () => {
                 </p>
                 <p className="flex items-center">
                   <svg
-                    className="w-6 h-6 mr-2 text-blue-800"
+                    className="w-6 h-6 mr-2 text-[#1666ba]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -207,7 +207,7 @@ const Contact = () => {
                 </p>
                 <p className="flex items-center">
                   <svg
-                    className="w-6 h-6 mr-2 text-blue-800"
+                    className="w-6 h-6 mr-2 text-[#1666ba]"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -224,7 +224,7 @@ const Contact = () => {
                 </p>
               </div>
               <div className="mt-8">
-                <h3 className="text-xl font-semibold text-blue-800 mb-4">Follow Us</h3>
+                <h3 className="text-xl font-semibold text-[#1666ba] mb-4">Follow Us</h3>
                 <div className="flex space-x-4">
                   {["facebook", "twitter", "linkedin", "instagram"].map((social) => (
                     <motion.a
@@ -234,7 +234,7 @@ const Contact = () => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
-                      className="text-blue-800 hover:text-blue-600"
+                      className="text-[#1666ba] hover:text-blue-600"
                     >
                       <span className="sr-only">{social}</span>
                       <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -258,7 +258,7 @@ const Contact = () => {
               }}
               className="bg-white p-8 rounded-lg shadow-lg"
             >
-              <h2 className="text-3xl font-bold text-blue-800 mb-6">Send Us a Message</h2>
+              <h2 className="text-3xl font-bold text-[#1666ba] mb-6">Send Us a Message</h2>
               <ContactForm />
             </motion.div>
           </div>
@@ -274,7 +274,7 @@ const Contact = () => {
             variants={{
               visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
             }}
-            className="text-3xl font-bold text-center text-blue-800 mb-12"
+            className="text-3xl font-bold text-center text-[#1666ba] mb-12"
           >
             Frequently Asked Questions
           </motion.h2>
@@ -310,7 +310,7 @@ const Contact = () => {
                 }}
                 className="bg-white p-6 rounded-lg shadow-md"
               >
-                <h3 className="text-xl font-semibold text-blue-800 mb-2">{faq.question}</h3>
+                <h3 className="text-xl font-semibold text-[#1666ba] mb-2">{faq.question}</h3>
                 <p className="text-gray-600">{faq.answer}</p>
               </motion.div>
             ))}
@@ -327,7 +327,7 @@ const Contact = () => {
             variants={{
               visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
             }}
-            className="text-3xl font-bold text-center text-blue-800 mb-12"
+            className="text-3xl font-bold text-center text-[#1666ba] mb-12"
           >
             Visit Our Campus
           </motion.h2>

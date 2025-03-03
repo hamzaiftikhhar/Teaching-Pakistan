@@ -101,7 +101,7 @@ const Admissions = () => {
             variants={{
               visible: { opacity: 1, transition: { duration: 0.8 } },
             }}
-            className="text-3xl font-bold text-center text-blue-800 mb-12"
+            className="text-3xl font-bold text-center text-[#1666ba] mb-12"
           >
             Admission Process
           </motion.h2>
@@ -119,7 +119,7 @@ const Admissions = () => {
               ))}
             </div>
             <div className="bg-white p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold text-blue-800 mb-4">Requirements</h3>
+              <h3 className="text-2xl font-bold text-[#1666ba] mb-4">Requirements</h3>
               <ul className="space-y-4">
                 <li className="flex items-center">
                   <svg
@@ -213,7 +213,7 @@ const Admissions = () => {
                 variants={{
                   visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: index * 0.2 } },
                 }}
-                className="bg-[#166ba] p-6 rounded-lg shadow-lg text-center"
+                className="bg-[#1666ba] p-6 rounded-lg shadow-lg text-center"
               >
                 <h3 className="text-xl font-semibold mb-2">{deadline.term}</h3>
                 <p className="text-3xl font-bold">{deadline.deadline}</p>
@@ -232,7 +232,7 @@ const Admissions = () => {
             variants={{
               visible: { opacity: 1, transition: { duration: 0.8 } },
             }}
-            className="text-3xl font-bold text-center text-blue-800 mb-12"
+            className="text-3xl font-bold text-center text-[#1666ba] mb-12"
           >
             Financial Aid & Scholarships
           </motion.h2>
@@ -245,7 +245,7 @@ const Admissions = () => {
               }}
               className="bg-gray-100 p-8 rounded-lg shadow-lg"
             >
-              <h3 className="text-2xl font-bold text-blue-800 mb-4">Merit-Based Scholarships</h3>
+              <h3 className="text-2xl font-bold text-[#1666ba] mb-4">Merit-Based Scholarships</h3>
               <p className="text-gray-600 mb-4">
                 We offer a range of merit-based scholarships to recognize outstanding academic achievements and
                 leadership potential.
@@ -264,7 +264,7 @@ const Admissions = () => {
               }}
               className="bg-gray-100 p-8 rounded-lg shadow-lg"
             >
-              <h3 className="text-2xl font-bold text-blue-800 mb-4">Need-Based Financial Aid</h3>
+              <h3 className="text-2xl font-bold text-[#1666ba] mb-4">Need-Based Financial Aid</h3>
               <p className="text-gray-600 mb-4">
                 We are committed to making our programs accessible to all qualified candidates, regardless of financial
                 circumstances.
