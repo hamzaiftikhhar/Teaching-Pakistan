@@ -1,19 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom"
 
 const Footer = () => {
   const quickLinks = [
-    { name: 'About Us', path: '/about' },
-    { name: 'Programs', path: '/programs' },
-    { name: 'Admissions', path: '/admissions' },
-    { name: 'Contact', path: '/contact' },
-  ];
+    { name: "About Us", path: "/about" },
+    { name: "Programs", path: "/programs" },
+    { name: "Admissions", path: "/admissions" },
+    { name: "Contact", path: "/contact" },
+  ]
 
   const socialLinks = [
-    { name: 'Facebook', path: '#' },
-    { name: 'Twitter', path: '#' },
-    { name: 'LinkedIn', path: '#' },
-    { name: 'Instagram', path: '#' },
-  ];
+    { name: "Facebook", path: "#" },
+    { name: "Twitter", path: "#" },
+    { name: "LinkedIn", path: "#" },
+    { name: "Instagram", path: "#" },
+  ]
 
   return (
     <footer className="bg-[#1666ba] text-white">
@@ -45,7 +45,7 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4">Contact Us</h4>
             <div className="space-y-2 text-gray-300">
-              <p>XYZ Street, City, Country</p>
+              <p>School of Leadership and Diplomacy, XYZ Street, City, Country</p>
               <p>Email: info@leadershipdiplomacy.edu</p>
               <p>Phone: +1234567890</p>
               <div className="flex space-x-4 mt-4">
@@ -64,11 +64,13 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-white">          <p>© 2024 School of Leadership and Diplomacy. All Rights Reserved.</p>
+        <div className="border-t border-gray-700 mt-8 pt-8 text-center text-gray-300">
+          <p>© 2024 School of Leadership and Diplomacy. All Rights Reserved.</p>
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer
+
