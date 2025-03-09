@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { useAnimateOnce } from "../components/ui/animate-once"
 
 // Import event images
 import event1 from "../assets/event1.jpg"
@@ -56,16 +55,31 @@ const EventCard = ({ event, setSelectedEvent }) => (
   <motion.div
     layoutId={`event-${event.id}`}
     onClick={() => setSelectedEvent(event)}
-    className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer flex flex-col h-full"
+    className="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer flex flex-col h-full w-full"
     whileHover={{ scale: 1.03 }}
     transition={{ duration: 0.3 }}
   >
-    <img src={event.image || "/placeholder.svg"} alt={event.title} className="w-full h-48 object-cover" />
+    <div className="relative h-48">
+      <img src={event.image || "/placeholder.svg"} alt={event.title} className="w-full h-full object-cover" />
+      <div className="absolute top-0 right-0 bg-[#1666ba] text-white px-3 py-1 m-2 rounded-full text-sm">
+        {event.date}
+      </div>
+    </div>
     <div className="p-4 flex flex-col flex-grow">
       <h3 className="text-lg font-semibold text-[#1666ba] mb-2">{event.title}</h3>
-      <p className="text-sm text-gray-600 mb-2">{event.date}</p>
       <p className="text-sm text-gray-700 flex-grow">{event.description}</p>
-      <button className="mt-4 text-blue-600 hover:text-[#1666ba] text-sm font-medium">Learn More →</button>
+      <button className="mt-4 text-[#1666ba] hover:text-[#1254a1] text-sm font-medium flex items-center">
+        Learn More
+        <svg
+          className="w-4 h-4 ml-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
     </div>
   </motion.div>
 )
@@ -73,18 +87,20 @@ const EventCard = ({ event, setSelectedEvent }) => (
 const EventModal = ({ event, setSelectedEvent }) => (
   <motion.div
     layoutId={`event-${event.id}`}
-    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
     onClick={() => setSelectedEvent(null)}
   >
-    <motion.div className="bg-white rounded-lg shadow-xl max-w-2xl w-full m-4" onClick={(e) => e.stopPropagation()}>
+    <motion.div className="bg-white rounded-lg shadow-xl max-w-2xl w-full" onClick={(e) => e.stopPropagation()}>
       <img
         src={event.image || "/placeholder.svg"}
         alt={event.title}
         className="w-full h-64 object-cover rounded-t-lg"
       />
       <div className="p-6">
-        <h2 className="text-3xl font-bold text-[#1666ba] mb-4">{event.title}</h2>
-        <p className="text-xl text-gray-600 mb-4">{event.date}</p>
+        <div className="flex justify-between items-start mb-4">
+          <h2 className="text-3xl font-bold text-[#1666ba]">{event.title}</h2>
+          <span className="bg-[#1666ba] text-white px-3 py-1 rounded-full text-sm">{event.date}</span>
+        </div>
         <p className="text-gray-700 mb-6">{event.details}</p>
         <div className="flex justify-between items-center">
           <button
@@ -110,25 +126,17 @@ const Events = () => {
 
   const filteredEvents = filter === "upcoming" ? upcomingEvents : pastEvents
 
-  const heroAnimation = useAnimateOnce()
-  const newsAnimation = useAnimateOnce()
-  const eventsAnimation = useAnimateOnce()
-  const newsletterAnimation = useAnimateOnce()
-
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen pt-20">
       {/* Hero Section */}
       <section className="relative py-20 bg-[#1666ba] text-white overflow-hidden">
         <motion.div
-          ref={heroAnimation.ref}
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={heroAnimation.controls}
-          variants={{
-            visible: { opacity: 1, scale: 1, transition: { duration: 1 } },
-          }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1 }}
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10"
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Stay Updated with the Latest</h1>
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Events & News</h1>
           <p className="text-xl text-center max-w-3xl mx-auto">
             Discover our upcoming events and latest achievements in leadership and diplomacy
           </p>
@@ -164,38 +172,54 @@ const Events = () => {
       </section>
 
       {/* News and Achievements Section */}
-      <section className="py-16 bg-white" ref={newsAnimation.ref}>
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            animate={newsAnimation.controls}
-            variants={{
-              visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-            }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             className="text-3xl font-bold text-[#1666ba] mb-8 text-center"
           >
             News and Achievements
           </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={newsAnimation.controls}
-            variants={{
-              visible: { opacity: 1, y: 0, transition: { duration: 0.8, delay: 0.2 } },
-            }}
-            className="bg-blue-50 p-6 rounded-lg shadow-lg"
-          >
-            <h3 className="text-xl font-semibold text-[#1666ba] mb-4">
-              Faculty Publishes Groundbreaking Research in International Diplomacy
-            </h3>
-            <p className="text-gray-700">
-              Our esteemed faculty member, Dr. Sarah Johnson, has published a groundbreaking paper on innovative
-              approaches to conflict resolution in the digital age. This research is expected to significantly impact
-              the field of international diplomacy and has been featured in several prestigious academic journals.
-            </p>
-            <a href="#" className="inline-block mt-4 text-blue-600 hover:underline">
-              Read more
-            </a>
-          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="bg-blue-50 p-6 rounded-lg shadow-lg"
+            >
+              <h3 className="text-xl font-semibold text-[#1666ba] mb-4">
+                Faculty Publishes Groundbreaking Research in International Diplomacy
+              </h3>
+              <p className="text-gray-700">
+                Our esteemed faculty member, Dr. Sarah Johnson, has published a groundbreaking paper on innovative
+                approaches to conflict resolution in the digital age. This research is expected to significantly impact
+                the field of international diplomacy and has been featured in several prestigious academic journals.
+              </p>
+              <a href="#" className="inline-block mt-4 text-[#1666ba] hover:underline">
+                Read more
+              </a>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="bg-blue-50 p-6 rounded-lg shadow-lg"
+            >
+              <h3 className="text-xl font-semibold text-[#1666ba] mb-4">
+                School of Leadership and Diplomacy Ranked Among Top 10 Institutions
+              </h3>
+              <p className="text-gray-700">
+                We are proud to announce that our institution has been ranked among the top 10 schools for diplomatic
+                studies worldwide. This recognition reflects our commitment to excellence in education and the
+                outstanding achievements of our students and faculty.
+              </p>
+              <a href="#" className="inline-block mt-4 text-[#1666ba] hover:underline">
+                Read more
+              </a>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -224,20 +248,14 @@ const Events = () => {
       </section>
 
       {/* Events Grid */}
-      <section className="py-12" ref={eventsAnimation.ref}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            layout
-            initial={{ opacity: 0, y: 20 }}
-            animate={eventsAnimation.controls}
-            variants={{
-              visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-            }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <AnimatePresence>
               {filteredEvents.map((event) => (
-                <EventCard key={event.id} event={event} setSelectedEvent={setSelectedEvent} />
+                <div key={event.id} className="w-full">
+                  <EventCard event={event} setSelectedEvent={setSelectedEvent} />
+                </div>
               ))}
             </AnimatePresence>
           </motion.div>
@@ -250,34 +268,28 @@ const Events = () => {
       </AnimatePresence>
 
       {/* Newsletter Signup */}
-      <section className="py-20 bg-[#1666ba] text-white" ref={newsletterAnimation.ref}>
+      <section className="py-20 bg-[#1666ba] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            animate={newsletterAnimation.controls}
-            variants={{
-              visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-            }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             className="text-3xl md:text-4xl font-bold mb-6"
           >
             Stay Informed
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
-            animate={newsletterAnimation.controls}
-            variants={{
-              visible: { opacity: 1, y: 0, transition: { delay: 0.2, duration: 0.8 } },
-            }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
             className="text-xl mb-8"
           >
             Subscribe to our newsletter for exclusive event announcements and the latest news
           </motion.p>
           <motion.form
             initial={{ opacity: 0, y: 20 }}
-            animate={newsletterAnimation.controls}
-            variants={{
-              visible: { opacity: 1, y: 0, transition: { delay: 0.4, duration: 0.8 } },
-            }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
             className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-4"
           >
             <input
