@@ -2,15 +2,14 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { useAnimateOnce } from "../components/ui/animate-once"
 
 const AdmissionStep = ({ step, title, description, isActive, onClick }) => (
   <motion.div
-    className={`border-l-4 pl-4 py-4 cursor-pointer ${isActive ? "border-blue-500" : "border-gray-300"}`}
+    className={`border-l-4 pl-4 py-4 cursor-pointer ${isActive ? "border-[#1666ba]" : "border-gray-300"}`}
     whileHover={{ x: 5 }}
     onClick={onClick}
   >
-    <h3 className={`text-xl font-semibold mb-2 ${isActive ? "text-blue-500" : "text-gray-700"}`}>
+    <h3 className={`text-xl font-semibold mb-2 ${isActive ? "text-[#1666ba]" : "text-gray-700"}`}>
       Step {step}: {title}
     </h3>
     {isActive && (
@@ -28,11 +27,6 @@ const AdmissionStep = ({ step, title, description, isActive, onClick }) => (
 
 const Admissions = () => {
   const [activeStep, setActiveStep] = useState(1)
-  const heroAnimation = useAnimateOnce()
-  const admissionProcessAnimation = useAnimateOnce()
-  const deadlinesAnimation = useAnimateOnce()
-  const financialAidAnimation = useAnimateOnce()
-  const ctaAnimation = useAnimateOnce()
 
   const admissionSteps = [
     {
@@ -63,50 +57,108 @@ const Admissions = () => {
   ]
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-white pt-20">
       {/* Hero Section */}
       <section className="relative py-20 bg-[#1666ba] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h1
-            ref={heroAnimation.ref}
             initial={{ y: -20, opacity: 0 }}
-            animate={heroAnimation.controls}
-            variants={{
-              visible: { y: 0, opacity: 1, transition: { duration: 0.8 } },
-            }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
             className="text-4xl md:text-5xl font-bold text-center mb-6"
           >
-            Join Our Global Community
+            Join Us and Shape the Future
           </motion.h1>
-          <motion.p
-            ref={heroAnimation.ref}
-            initial={{ y: 20, opacity: 0 }}
-            animate={heroAnimation.controls}
-            variants={{
-              visible: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
-            }}
-            className="text-xl text-center max-w-3xl mx-auto"
-          >
-            Embark on a transformative journey in leadership and diplomacy
-          </motion.p>
         </div>
       </section>
 
-      {/* Admission Process */}
-      <section className="py-20" ref={admissionProcessAnimation.ref}>
+      {/* Admission Requirements */}
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={admissionProcessAnimation.controls}
-            variants={{
-              visible: { opacity: 1, transition: { duration: 0.8 } },
-            }}
-            className="text-3xl font-bold text-center text-[#1666ba] mb-12"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            Admission Process
-          </motion.h2>
-          <div className="grid md:grid-cols-2 gap-12">
-            <div>
+            <h2 className="text-3xl font-bold text-[#1666ba] mb-8 text-center">Admission Requirements</h2>
+            <div className="bg-white p-8 rounded-lg shadow-lg">
+              <ul className="space-y-4">
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <div>
+                    <span className="font-semibold text-gray-800">Bachelor's degree</span>
+                    <p className="text-gray-600">From an accredited institution with a minimum GPA of 3.0</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <div>
+                    <span className="font-semibold text-gray-800">Letters of recommendation</span>
+                    <p className="text-gray-600">Two letters from academic or professional references</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <div>
+                    <span className="font-semibold text-gray-800">Statement of purpose</span>
+                    <p className="text-gray-600">A 500-word essay outlining your goals and interest in the program</p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <svg
+                    className="w-6 h-6 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                  <div>
+                    <span className="font-semibold text-gray-800">English proficiency</span>
+                    <p className="text-gray-600">TOEFL or IELTS scores for international applicants</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Application Process */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl font-bold text-[#1666ba] mb-8 text-center">Application Process</h2>
+            <div className="bg-white p-8 rounded-lg shadow-lg">
               {admissionSteps.map((step, index) => (
                 <AdmissionStep
                   key={index}
@@ -118,194 +170,82 @@ const Admissions = () => {
                 />
               ))}
             </div>
-            <div className="bg-white p-8 rounded-lg shadow-lg">
-              <h3 className="text-2xl font-bold text-[#1666ba] mb-4">Requirements</h3>
-              <ul className="space-y-4">
-                <li className="flex items-center">
-                  <svg
-                    className="w-6 h-6 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Bachelor's degree from an accredited institution
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-6 h-6 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Minimum GPA of 3.0 on a 4.0 scale
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-6 h-6 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Two letters of recommendation
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-6 h-6 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  Statement of purpose
-                </li>
-                <li className="flex items-center">
-                  <svg
-                    className="w-6 h-6 text-green-500 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                  </svg>
-                  English proficiency (TOEFL/IELTS) for international students
-                </li>
-              </ul>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Scholarships and Financial Aid */}
+      <section className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl font-bold text-[#1666ba] mb-8 text-center">Scholarships and Financial Aid</h2>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="bg-white p-8 rounded-lg shadow-lg">
+                <h3 className="text-xl font-bold text-[#1666ba] mb-4">Merit-Based Scholarships</h3>
+                <p className="text-gray-600 mb-4">
+                  We offer a range of merit-based scholarships to recognize outstanding academic achievements and
+                  leadership potential.
+                </p>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-2">•</span>
+                    Full-tuition scholarships
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-2">•</span>
+                    Partial-tuition scholarships
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-2">•</span>
+                    Research fellowships
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-white p-8 rounded-lg shadow-lg">
+                <h3 className="text-xl font-bold text-[#1666ba] mb-4">Need-Based Financial Aid</h3>
+                <p className="text-gray-600 mb-4">
+                  We are committed to making our programs accessible to all qualified candidates, regardless of
+                  financial circumstances.
+                </p>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-2">•</span>
+                    Grants
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-2">•</span>
+                    Work-study opportunities
+                  </li>
+                  <li className="flex items-center">
+                    <span className="text-green-500 mr-2">•</span>
+                    Low-interest loans
+                  </li>
+                </ul>
+              </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Application Deadlines */}
-      <section className="py-20 bg-[#1666ba] text-white" ref={deadlinesAnimation.ref}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={deadlinesAnimation.controls}
-            variants={{
-              visible: { opacity: 1, transition: { duration: 0.8 } },
-            }}
-            className="text-3xl font-bold text-center mb-12"
-          >
-            Application Deadlines
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { term: "Fall Semester", deadline: "March 1" },
-              { term: "Spring Semester", deadline: "October 1" },
-              { term: "Summer Session", deadline: "February 1" },
-            ].map((deadline, index) => (
-              <motion.div
-                key={index}
-                initial={{ y: 50, opacity: 0 }}
-                animate={deadlinesAnimation.controls}
-                variants={{
-                  visible: { y: 0, opacity: 1, transition: { duration: 0.8, delay: index * 0.2 } },
-                }}
-                className="bg-[#1666ba] p-6 rounded-lg shadow-lg text-center"
-              >
-                <h3 className="text-xl font-semibold mb-2">{deadline.term}</h3>
-                <p className="text-3xl font-bold">{deadline.deadline}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Financial Aid */}
-      <section className="py-20 bg-white" ref={financialAidAnimation.ref}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={financialAidAnimation.controls}
-            variants={{
-              visible: { opacity: 1, transition: { duration: 0.8 } },
-            }}
-            className="text-3xl font-bold text-center text-[#1666ba] mb-12"
-          >
-            Financial Aid & Scholarships
-          </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ x: -50, opacity: 0 }}
-              animate={financialAidAnimation.controls}
-              variants={{
-                visible: { x: 0, opacity: 1, transition: { duration: 0.8 } },
-              }}
-              className="bg-gray-100 p-8 rounded-lg shadow-lg"
-            >
-              <h3 className="text-2xl font-bold text-[#1666ba] mb-4">Merit-Based Scholarships</h3>
-              <p className="text-gray-600 mb-4">
-                We offer a range of merit-based scholarships to recognize outstanding academic achievements and
-                leadership potential.
-              </p>
-              <ul className="list-disc list-inside text-gray-600">
-                <li>Full-tuition scholarships</li>
-                <li>Partial-tuition scholarships</li>
-                <li>Research fellowships</li>
-              </ul>
-            </motion.div>
-            <motion.div
-              initial={{ x: 50, opacity: 0 }}
-              animate={financialAidAnimation.controls}
-              variants={{
-                visible: { x: 0, opacity: 1, transition: { duration: 0.8 } },
-              }}
-              className="bg-gray-100 p-8 rounded-lg shadow-lg"
-            >
-              <h3 className="text-2xl font-bold text-[#1666ba] mb-4">Need-Based Financial Aid</h3>
-              <p className="text-gray-600 mb-4">
-                We are committed to making our programs accessible to all qualified candidates, regardless of financial
-                circumstances.
-              </p>
-              <ul className="list-disc list-inside text-gray-600">
-                <li>Grants</li>
-                <li>Work-study opportunities</li>
-                <li>Low-interest loans</li>
-              </ul>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-green-500 text-white" ref={ctaAnimation.ref}>
+      {/* CTA Section */}
+      <section className="py-16 bg-[#1666ba] text-white">
         <div className="max-w-4xl mx-auto px-4 text-center">
           <motion.h2
             initial={{ opacity: 0 }}
-            animate={ctaAnimation.controls}
-            variants={{
-              visible: { opacity: 1, transition: { duration: 0.8 } },
-            }}
-            className="text-3xl md:text-4xl font-bold mb-6"
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-3xl font-bold mb-6"
           >
-            Ready to Take the Next Step?
+            Ready to Begin Your Journey?
           </motion.h2>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={ctaAnimation.controls}
-            variants={{
-              visible: { y: 0, opacity: 1, transition: { delay: 0.2, duration: 0.8 } },
-            }}
-            className="text-xl mb-8"
-          >
-            Start your application today and begin your journey towards becoming a global leader
-          </motion.p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-white text-green-500 px-8 py-3 rounded-full text-lg font-semibold transition-colors duration-200 hover:bg-gray-100"
+            className="bg-white text-[#1666ba] px-8 py-3 rounded-full text-lg font-semibold transition-colors duration-200 hover:bg-gray-100"
           >
             Apply Now
           </motion.button>
@@ -316,4 +256,3 @@ const Admissions = () => {
 }
 
 export default Admissions
-
