@@ -2,11 +2,11 @@
 
 import { useState, useEffect } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
 
   const navItems = [
@@ -41,12 +41,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? "bg-white shadow-md py-2" : "bg-transparent py-4"}`}
+      className={`fixed w-full z-50 transition-all duration-300 ${
+        scrolled ? "bg-white shadow-md py-2" : "py-4 shadow-lg bg-transparent"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
-            <Link to="/" className="flex-shrink-0 flex items-center">
+            <Link to="/" className="flex-shrink-0">
               <motion.span
                 className={`text-2xl font-bold ${scrolled ? "text-[#1666ba]" : "text-white"}`}
                 whileHover={{ scale: 1.05 }}
@@ -62,7 +64,9 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`${scrolled ? "text-gray-700 hover:text-[#1666ba]" : "text-white hover:text-gray-200"} px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+                className={`${
+                  scrolled ? "text-gray-700 hover:text-[#1666ba]" : "text-white hover:text-gray-200"
+                } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
               >
                 {item.name}
               </Link>
@@ -70,7 +74,9 @@ const Navbar = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className={`${scrolled ? "bg-[#1666ba] text-white" : "bg-white text-[#1666ba]"} px-4 py-2 rounded-full text-sm font-medium hover:bg-opacity-90 transition-colors duration-200`}
+              className={`${
+                scrolled ? "bg-[#1666ba] text-white" : "bg-white text-[#1666ba]"
+              } px-4 py-2 rounded-full text-sm font-medium hover:bg-opacity-90 transition-colors duration-200`}
             >
               Apply Now
             </motion.button>
@@ -80,7 +86,9 @@ const Navbar = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className={`inline-flex items-center justify-center p-2 rounded-md ${scrolled ? "text-gray-700 hover:text-[#1666ba] hover:bg-gray-100" : "text-white hover:text-gray-200 hover:bg-[#1666ba]"} focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white`}
+              className={`inline-flex items-center justify-center p-2 rounded-md ${
+                scrolled ? "text-gray-700 hover:text-[#1666ba]" : "text-white hover:text-gray-200"
+              } focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white`}
             >
               <span className="sr-only">Open main menu</span>
               <svg
@@ -107,32 +115,25 @@ const Navbar = () => {
       </div>
 
       {/* Mobile Navigation Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white shadow-lg"
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className="text-gray-700 hover:text-[#1666ba] hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-              <button className="w-full bg-[#1666ba] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#1254a1] transition-colors duration-200 mt-4">
-                Apply Now
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {isOpen && (
+        <div className="md:hidden bg-white shadow-lg">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.path}
+                className="text-gray-700 hover:text-[#1666ba] hover:bg-gray-50 block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
+            <button className="w-full bg-[#1666ba] text-white px-4 py-2 rounded-full text-sm font-medium hover:bg-[#1254a1] transition-colors duration-200 mt-4">
+              Apply Now
+            </button>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }
