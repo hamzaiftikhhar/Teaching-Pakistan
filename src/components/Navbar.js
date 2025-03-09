@@ -8,6 +8,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
+  const isHomePage = location.pathname === "/"
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -42,7 +43,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed w-full z-50 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md py-2" : "py-4 shadow-lg bg-transparent"
+        scrolled ? "bg-white shadow-md py-2" : isHomePage ? "py-4 shadow-lg bg-transparent" : "py-4 shadow-lg bg-white"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,7 +51,7 @@ const Navbar = () => {
           <div className="flex items-center">
             <Link to="/" className="flex-shrink-0">
               <motion.span
-                className={`text-2xl font-bold ${scrolled ? "text-[#1666ba]" : "text-white"}`}
+                className={`text-2xl font-bold ${scrolled || !isHomePage ? "text-[#1666ba]" : "text-white"}`}
                 whileHover={{ scale: 1.05 }}
               >
                 SLD
@@ -65,7 +66,7 @@ const Navbar = () => {
                 key={item.name}
                 to={item.path}
                 className={`${
-                  scrolled ? "text-gray-700 hover:text-[#1666ba]" : "text-white hover:text-gray-200"
+                  scrolled || !isHomePage ? "text-gray-700 hover:text-[#1666ba]" : "text-white hover:text-gray-200"
                 } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
               >
                 {item.name}
@@ -75,7 +76,7 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className={`${
-                scrolled ? "bg-[#1666ba] text-white" : "bg-white text-[#1666ba]"
+                scrolled || !isHomePage ? "bg-[#1666ba] text-white" : "bg-white text-[#1666ba]"
               } px-4 py-2 rounded-full text-sm font-medium hover:bg-opacity-90 transition-colors duration-200`}
             >
               Apply Now
@@ -87,7 +88,7 @@ const Navbar = () => {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`inline-flex items-center justify-center p-2 rounded-md ${
-                scrolled ? "text-gray-700 hover:text-[#1666ba]" : "text-white hover:text-gray-200"
+                scrolled || !isHomePage ? "text-gray-700 hover:text-[#1666ba]" : "text-white hover:text-gray-200"
               } focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white`}
             >
               <span className="sr-only">Open main menu</span>

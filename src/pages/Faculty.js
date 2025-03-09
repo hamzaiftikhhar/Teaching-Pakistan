@@ -3,8 +3,9 @@
 import { motion } from "framer-motion"
 
 // Import faculty images (using placeholders)
-const faculty1 = "/placeholder.svg?height=400&width=400"
-const faculty2 = "/placeholder.svg?height=400&width=400"
+import char1 from "../assets/char1.jpg"
+import char2 from "../assets/char2.jpg"
+
 
 const Faculty = () => {
   return (
@@ -34,7 +35,7 @@ const Faculty = () => {
               className="bg-white p-8 rounded-lg shadow-lg flex flex-col md:flex-row gap-6"
             >
               <img
-                src={faculty1 || "/placeholder.svg"}
+                src={char1}
                 alt="Dr. Sarah Khan"
                 className="w-32 h-32 rounded-full object-cover mx-auto md:mx-0"
               />
@@ -57,7 +58,7 @@ const Faculty = () => {
               className="bg-white p-8 rounded-lg shadow-lg flex flex-col md:flex-row gap-6"
             >
               <img
-                src={faculty2 || "/placeholder.svg"}
+                src={char2 }
                 alt="Mr. Adeel Ahmed"
                 className="w-32 h-32 rounded-full object-cover mx-auto md:mx-0"
               />
