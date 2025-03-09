@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
 const ContactForm = () => {
   const [formStatus, setFormStatus] = useState(null)
@@ -32,7 +32,7 @@ const ContactForm = () => {
         subject: "",
         message: "",
       })
-    }, 1500)
+    }, 1000)
   }
 
   return (
@@ -109,42 +109,38 @@ const ContactForm = () => {
           Send Message
         </motion.button>
       </div>
-      <AnimatePresence>
-        {formStatus === "success" && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="text-green-600 text-center p-4 bg-green-50 rounded-md"
-          >
-            Thank you for your message. We'll get back to you soon!
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {formStatus === "success" && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-green-600 text-center p-4 bg-green-50 rounded-md"
+        >
+          Thank you for your message. We'll get back to you soon!
+        </motion.div>
+      )}
     </motion.form>
   )
 }
 
 const Contact = () => {
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-white pt-20">
       {/* Hero Section */}
       <section className="relative py-20 bg-[#1666ba] text-white">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1 }}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6">Get in Touch</h1>
-          <p className="text-xl text-center max-w-3xl mx-auto">
-            We're here to answer your questions and provide support. Reach out to us anytime.
-          </p>
-        </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.h1
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl md:text-5xl font-bold text-center mb-6"
+          >
+            Get in Touch
+          </motion.h1>
+        </div>
       </section>
 
       {/* Contact Information */}
-      <section className="py-20">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <motion.div
@@ -152,7 +148,7 @@ const Contact = () => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-3xl font-bold text-[#1666ba] mb-6">Contact Information</h2>
+              <h2 className="text-3xl font-bold text-[#1666ba] mb-8">Contact Information</h2>
               <div className="space-y-6">
                 <div className="flex items-start">
                   <svg
@@ -219,7 +215,7 @@ const Contact = () => {
                   </svg>
                   <div>
                     <h3 className="font-medium text-gray-800">Phone</h3>
-                    <p className="text-gray-600">+1234567890</p>
+                    <p className="text-gray-600">+lalala</p>
                   </div>
                 </div>
               </div>
@@ -265,13 +261,13 @@ const Contact = () => {
       </section>
 
       {/* Map Section */}
-      <section className="py-20 bg-white">
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-3xl font-bold text-center text-[#1666ba] mb-12"
+            className="text-3xl font-bold text-center text-[#1666ba] mb-8"
           >
             Visit Our Campus
           </motion.h2>
