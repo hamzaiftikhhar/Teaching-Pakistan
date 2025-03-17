@@ -60,14 +60,14 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-2 xl:space-x-6">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 to={item.path}
                 className={`${
                   scrolled || !isHomePage ? "text-gray-700 hover:text-[#1666ba]" : "text-white hover:text-gray-200"
-                } px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
+                } px-2 lg:px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200`}
               >
                 {item.name}
               </Link>
@@ -84,7 +84,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Navigation Button */}
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className={`inline-flex items-center justify-center p-2 rounded-md ${
@@ -117,7 +117,7 @@ const Navbar = () => {
 
       {/* Mobile Navigation Menu */}
       {isOpen && (
-        <div className="md:hidden bg-white shadow-lg">
+        <div className="lg:hidden bg-white shadow-lg">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             {navItems.map((item) => (
               <Link
